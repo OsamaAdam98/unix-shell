@@ -13,9 +13,7 @@ int main(int argc, char *argv[]) {
     wait(NULL);
   }
 
-  bool poll = true;
-
-  while (poll) {
+  while (1) {
     string userInput;
     cout << "user@shell => ";
     getline(cin, userInput);
