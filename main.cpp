@@ -5,7 +5,6 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-  // TODO: Fix args
   if (argc > 1) {
     for (int i = 0; i < argc; i++) {
       argv[i] = argv[i + 1];
@@ -17,9 +16,9 @@ int main(int argc, char *argv[]) {
   bool poll = true;
 
   while (poll) {
-    char userInput[99];
+    string userInput;
     cout << "user@shell => ";
-    cin.getline(userInput, 99, '\n');
+    getline(cin, userInput);
     stringstream stream(userInput);
     string token;
     string argsVector[20];

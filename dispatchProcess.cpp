@@ -26,9 +26,11 @@ void dispatchProcess(int argc, char* argv[]) {
       else
         args[i] = (char*)argv[i];
     }
-    // TODO: Fix chdir
     if (!strcmp(args[0], "cd"))
-      chdir(args[1]);
+      if (!args[1] || !strcmp(args[1], "~"))
+        chdir(getenv("HOME"));
+      else
+        chdir(args[1]);
     else
       execvp(args[0], args);
   }
