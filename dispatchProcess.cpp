@@ -3,7 +3,6 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <iostream>
-#include <vector>
 
 typedef pid_t pid;
 using namespace std;
@@ -28,7 +27,9 @@ void dispatchProcess(int argc, char* argv[]) {
         args[i] = (char*)argv[i];
     }
     // TODO: Fix chdir
-
-    execvp(args[0], args);
+    if (!strcmp(args[0], "cd"))
+      chdir(args[1]);
+    else
+      execvp(args[0], args);
   }
 }
