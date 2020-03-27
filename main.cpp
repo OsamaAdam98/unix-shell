@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
 
   while (poll) {
     char userInput[99];
+    cout << "user@shell => ";
     cin.getline(userInput, 99, '\n');
     stringstream stream(userInput);
     string token;
@@ -27,15 +28,19 @@ int main(int argc, char *argv[]) {
     int arraySize = 0;
     while (stream >> token) {
       argsVector[arraySize] = token;
-      cout << argsVector[arraySize] << endl;
+      // cout << argsVector[arraySize] << endl;
       arraySize++;
     }
 
     for (int i = 0; i < arraySize; i++) {
       args[i] = (char *)argsVector[i].c_str();
     }
-
-    dispatchProcess(arraySize + 1, args);
-    wait(NULL);
+    if (!strcmp(args[0], "exit")) {
+      cout << "Farewell!" << endl;
+      exit(0);
+    } else {
+      dispatchProcess(arraySize + 1, args);
+      wait(NULL);
+    }
   }
 }

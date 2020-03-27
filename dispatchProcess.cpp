@@ -9,7 +9,7 @@ typedef pid_t pid;
 using namespace std;
 
 void dispatchProcess(int argc, char* argv[]) {
-  cout << argc << endl;
+  // cout << argc << endl;
 
   // for (int i = 0; i < argc - 1; i++) {
   //   cout << argv[i] << endl;
@@ -19,7 +19,7 @@ void dispatchProcess(int argc, char* argv[]) {
   if (processID < 0) {
     perror("Fork failed!\n");
     exit(1);
-  } else if (processID == 0) {
+  } else if (processID == 0 && argc > 1) {
     char* args[argc];
 
     for (int i = 0; i <= argc; i++) {
@@ -29,6 +29,7 @@ void dispatchProcess(int argc, char* argv[]) {
         args[i] = (char*)argv[i];
     }
     // TODO: Fix dots in commands
+
     execvp(args[0], args);
   }
 }
