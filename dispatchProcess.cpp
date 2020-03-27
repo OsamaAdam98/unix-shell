@@ -21,14 +21,13 @@ void dispatchProcess(int argc, char* argv[]) {
     exit(1);
   } else if (processID == 0 && argc > 1) {
     char* args[argc];
-
     for (int i = 0; i <= argc; i++) {
       if (i == argc)
         args[i] = NULL;
       else
         args[i] = (char*)argv[i];
     }
-    // TODO: Fix dots in commands
+    // TODO: Fix chdir
 
     execvp(args[0], args);
   }

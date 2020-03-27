@@ -8,10 +8,13 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
   // TODO: Fix args
-  // if (argc > 1) {
-  //   cout << argc << endl;
-  //   dispatchProcess(argc, argv, 1);
-  // }
+  if (argc > 1) {
+    for (int i = 0; i < argc; i++) {
+      argv[i] = argv[i + 1];
+    }
+    dispatchProcess(argc, argv);
+    wait(NULL);
+  }
 
   bool poll = true;
 
