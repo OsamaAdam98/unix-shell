@@ -1,24 +1,41 @@
+#include <string.h>
 #include <iostream>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
+#include <sstream>
+#include <vector>
+#include "dispatchProcess.cpp"
 
 using namespace std;
-typedef pid_t pid;
 
 int main(int argc, char *argv[]) {
-  pid processID = fork();
+  // TODO: Fix args
+  // if (argc > 1) {
+  //   cout << argc << endl;
+  //   dispatchProcess(argc, argv, 1);
+  // }
 
-  if(processID < 0) {
-    perror("Fork failed!\n");
-    exit(1);
-  } else if(processID == 0) {
-    char *args[argc + 1];
-    for(int i = 0; i < argc; i++) {
-      if(i == argc) args[i] = NULL;
-      args[i] = argv[i + 1];
+  bool poll = true;
+
+  while (poll) {
+    char userInput[99];
+    cin.getline(userInput, 99, '\n');
+    stringstream stream(userInput);
+    string token;
+    string argsVector[20];
+    char *args[20] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                      NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                      NULL, NULL, NULL, NULL, NULL, NULL};
+    int arraySize = 0;
+    while (stream >> token) {
+      argsVector[arraySize] = token;
+      cout << argsVector[arraySize] << endl;
+      arraySize++;
     }
-    execvp(argv[1], args);
+
+    for (int i = 0; i < arraySize; i++) {
+      args[i] = (char *)argsVector[i].c_str();
+    }
+
+    dispatchProcess(arraySize + 1, args);
+    wait(NULL);
   }
-  wait(NULL);
 }
