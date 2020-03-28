@@ -28,21 +28,24 @@ void dispatchProcess(int argc, char* argv[]) {
       perror("Fork failed!\n");
       exit(1);
     } else if (processID == 0) {
-      cout << "Child pid: " << getpid() << endl;
+      // cout << "Child pid: " << getpid() << endl;
 
       if (!strcmp(args[argc - 2], "&")) {
         exit(0);
       } else {
         if (!strcmp(args[0], "cd")) {
           exit(0);
+        } else if (!strcmp(args[0], "log")) {
+          const char* log[] = {"vi", "shell.log", NULL};
+          execvp(log[0], (char**)log);
         } else
           execvp(args[0], args);
       }
     } else {
+      // cout << "Parent pid: " << getpid() << endl;
       if (!strcmp(args[0], "cd")) {
         cd(argc, args);
       } else if (!strcmp(args[argc - 2], "&")) {
-        cout << "Parent pid: " << getpid() << endl;
         args[argc - 2] = NULL;
         dispatchProcess(argc - 1, args);
         signal(SIGCHLD, terminator);
