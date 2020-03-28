@@ -49,6 +49,10 @@ int main(int argc, char *argv[]) {
     do {
       userInput = prompt(username);
     } while (userInput.empty() || isspace(userInput.at(0)));
+    if (userInput == "logout") {
+      cout << endl << "logging out.." << endl;
+      break;
+    }
     // string splitting
     stringstream stream(userInput);
     while (stream >> token) {
