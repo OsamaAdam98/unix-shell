@@ -24,6 +24,11 @@ void terminator(pid sigPid) {
       fclose(logFile);
       break;
 
+    case SIGQUIT:
+      cout << "Farewell!" << endl;
+      exit(0);
+      break;
+
     default:
       cout << sigPid << endl;
       break;

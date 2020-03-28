@@ -62,8 +62,7 @@ int main(int argc, char *argv[]) {
     }
     // actual processing
     if (!strcmp(args[0], "exit")) {
-      cout << "Farewell!" << endl;
-      exit(0);
+      terminator(SIGQUIT);
     } else {
       dispatcher(arraySize + 1, args);
       wait(NULL);
