@@ -7,7 +7,7 @@
 typedef pid_t pid;
 using namespace std;
 
-void dispatchProcess(int argc, char* argv[]) {
+void dispatcher(int argc, char* argv[]) {
   // cout << argc << endl;
 
   // for (int i = 0; i < argc - 1; i++) {
@@ -47,7 +47,7 @@ void dispatchProcess(int argc, char* argv[]) {
         cd(argc, args);
       } else if (!strcmp(args[argc - 2], "&")) {
         args[argc - 2] = NULL;
-        dispatchProcess(argc - 1, args);
+        dispatcher(argc - 1, args);
         signal(SIGCHLD, terminator);
       }
     }

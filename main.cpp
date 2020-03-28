@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sstream>
-#include "dispatchProcess.cpp"
+#include "dispatcher.cpp"
 #include "prompt.cpp"
 
 #define bufferLength 99
@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < argc; i++) {
       argv[i] = argv[i + 1];
     }
-    dispatchProcess(argc, argv);
+    dispatcher(argc, argv);
     wait(NULL);
   }
 
@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
       cout << "Farewell!" << endl;
       exit(0);
     } else {
-      dispatchProcess(arraySize + 1, args);
+      dispatcher(arraySize + 1, args);
       wait(NULL);
     }
   }
