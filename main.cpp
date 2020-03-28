@@ -23,32 +23,42 @@ int main(int argc, char *argv[]) {
     fgets(username, bufferLength, configFile);
     fclose(configFile);
   } else {
-    cout << "Enter username: ";
+    cout << "enter username: ";
     cin >> username;
     configFile = fopen(".shellrc", "w+");
     fprintf(configFile, "%s", username);
     fclose(configFile);
   }
 
+  string userInput;
+  string token;
+  string argsVector[bufferLength];
+  char *args[bufferLength];
+  int arraySize;
+
   while (1) {
-    string userInput;
+    // clearing
+    userInput.clear();
+    token.clear();
+    arraySize = 0;
+    for (int i = 0; i < bufferLength; i++) {
+      argsVector[i].clear();
+      args[i] = NULL;
+    }
+    // prompting
     do {
       userInput = prompt(username);
     } while (userInput.empty() || isspace(userInput.at(0)));
+    // string splitting
     stringstream stream(userInput);
-    string token;
-    string argsVector[bufferLength];
-    char *args[bufferLength];
-    for (int i = 0; i < bufferLength; i++) args[i] = NULL;
-    int arraySize = 0;
     while (stream >> token) {
       argsVector[arraySize] = token;
       arraySize++;
     }
-
     for (int i = 0; i < arraySize; i++) {
       args[i] = (char *)argsVector[i].c_str();
     }
+    // actual processing
     if (!strcmp(args[0], "exit")) {
       cout << "Farewell!" << endl;
       exit(0);
