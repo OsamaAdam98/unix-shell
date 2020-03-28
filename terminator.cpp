@@ -1,4 +1,5 @@
 #include <sys/wait.h>
+#include <time.h>
 #include <unistd.h>
 #include <iostream>
 
@@ -7,7 +8,13 @@ typedef pid_t pid;
 
 void terminator(pid sigPid) {
   int status;
-  while (waitpid(-1, &status, WNOHANG) > 0) {
-    // cout << status << endl;
+  pid processPid;
+  time_t localTime = time(NULL);
+  FILE *logFile = fopen("./shell.log", "a+");
+
+  while ((processPid = waitpid(-1, &status, WNOHANG)) > 0) {
+    fprintf(logFile, "%s\tProcess %d exited with status %d\n",
+            asctime(localtime(&localTime)), processPid, status);
   }
+  fclose(logFile);
 }

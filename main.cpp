@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include "dispatchProcess.cpp"
+#include "prompt.cpp"
 
 #define bufferLength 99
 
@@ -15,10 +16,25 @@ int main(int argc, char *argv[]) {
     wait(NULL);
   }
 
+  char username[bufferLength];
+  FILE *configFile;
+
+  if ((configFile = fopen(".shellrc", "r"))) {
+    fgets(username, bufferLength, configFile);
+    fclose(configFile);
+  } else {
+    cout << "Enter username: ";
+    cin >> username;
+    configFile = fopen(".shellrc", "w+");
+    fprintf(configFile, "%s", username);
+    fclose(configFile);
+  }
+
   while (1) {
     string userInput;
-    cout << "user@shell => ";
-    getline(cin, userInput);
+    do {
+      userInput = prompt(username);
+    } while (userInput.empty() || isspace(userInput.at(0)));
     stringstream stream(userInput);
     string token;
     string argsVector[bufferLength];

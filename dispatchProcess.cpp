@@ -37,7 +37,6 @@ void dispatchProcess(int argc, char* argv[]) {
           exit(0);
         } else
           execvp(args[0], args);
-        exit(0);
       }
     } else {
       if (!strcmp(args[0], "cd")) {
