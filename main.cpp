@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
-#include "dispatcher.cpp"
-#include "prompt.cpp"
+#include "dispatcher.hpp"
+#include "prompt.hpp"
 
 #define bufferLength 99
 

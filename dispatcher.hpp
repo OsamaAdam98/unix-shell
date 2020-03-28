@@ -1,8 +1,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <iostream>
-#include "cd.cpp"
-#include "terminator.cpp"
+#include "cd.hpp"
+#include "terminator.hpp"
 
 typedef pid_t pid;
 using namespace std;
