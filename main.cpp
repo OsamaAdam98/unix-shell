@@ -2,6 +2,8 @@
 #include <sstream>
 #include "dispatchProcess.cpp"
 
+#define bufferLength 99
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -19,14 +21,12 @@ int main(int argc, char *argv[]) {
     getline(cin, userInput);
     stringstream stream(userInput);
     string token;
-    string argsVector[20];
-    char *args[20] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-                      NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-                      NULL, NULL, NULL, NULL, NULL, NULL};
+    string argsVector[bufferLength];
+    char *args[bufferLength];
+    for (int i = 0; i < bufferLength; i++) args[i] = NULL;
     int arraySize = 0;
     while (stream >> token) {
       argsVector[arraySize] = token;
-      // cout << argsVector[arraySize] << endl;
       arraySize++;
     }
 
