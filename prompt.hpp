@@ -1,3 +1,5 @@
+#ifndef PROMPT
+#define PROMPT
 #include <iostream>
 
 using namespace std;
@@ -9,3 +11,4 @@ string prompt(char *username) {
   if (cin.eof()) return "logout";
   return userInput;
 }
+#endif

@@ -1,3 +1,5 @@
+#ifndef CD
+#define CD
 #include <string.h>
 #include <unistd.h>
 #include <iostream>
@@ -11,3 +13,4 @@ void cd(int argc, char *args[]) {
     chdir(args[1]);
   }
 }
+#endif

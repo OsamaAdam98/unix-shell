@@ -1,3 +1,5 @@
+#ifndef DISPATCHER
+#define DISPATCHER
 #include <string.h>
 #include <unistd.h>
 #include <iostream>
@@ -53,3 +55,4 @@ void dispatcher(int argc, char* argv[]) {
     }
   }
 }
+#endif
