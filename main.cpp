@@ -53,10 +53,8 @@ int main(int argc, char *argv[]) {
     stringstream stream(userInput);
     while (stream >> token) {
       argsVector[arraySize] = token;
+      args[arraySize] = (char *)argsVector[arraySize].c_str();
       arraySize++;
-    }
-    for (int i = 0; i < arraySize; i++) {
-      args[i] = (char *)argsVector[i].c_str();
     }
     // actual processing
     if (!strcmp(args[0], "exit")) {
