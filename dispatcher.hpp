@@ -9,7 +9,7 @@
 typedef pid_t pid;
 using namespace std;
 
-void dispatcher(int argc, char* argv[]) {
+void dispatcher(int argc, char* argv[], char* cwd = (char*)"") {
   char* args[argc];
   for (int i = 0; i <= argc; i++) {
     if (i == argc)
@@ -37,7 +37,7 @@ void dispatcher(int argc, char* argv[]) {
       }
     } else {
       if (!strcmp(args[0], "cd")) {
-        cd(argc, args);
+        cd(argc, args, cwd);
       } else if (!strcmp(args[argc - 2], "&")) {
         args[argc - 2] = NULL;
         dispatcher(argc - 1, args);

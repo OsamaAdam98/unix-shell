@@ -17,7 +17,9 @@ int main(int argc, char *argv[]) {
   }
 
   char username[bufferLength];
+  char cwd[bufferLength];
   getlogin_r(username, bufferLength);
+  getcwd(cwd, bufferLength);
 
   string userInput;
   string token;
@@ -36,7 +38,7 @@ int main(int argc, char *argv[]) {
     }
     // prompting
     do {
-      userInput = prompt(username);
+      userInput = prompt(username, cwd);
     } while (userInput.empty() || isspace(userInput.at(0)));
     if (userInput == "logout") {
       cout << endl << "logging out.." << endl;
@@ -53,7 +55,7 @@ int main(int argc, char *argv[]) {
     if (!strcmp(args[0], "exit")) {
       terminator(SIGQUIT);
     } else {
-      dispatcher(arraySize + 1, args);
+      dispatcher(arraySize + 1, args, cwd);
       wait(NULL);
     }
   }
