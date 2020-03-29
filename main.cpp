@@ -17,18 +17,7 @@ int main(int argc, char *argv[]) {
   }
 
   char username[bufferLength];
-  FILE *configFile;
-
-  if ((configFile = fopen(".shellrc", "r"))) {
-    fgets(username, bufferLength, configFile);
-    fclose(configFile);
-  } else {
-    cout << "enter username: ";
-    cin >> username;
-    configFile = fopen(".shellrc", "w+");
-    fprintf(configFile, "%s", username);
-    fclose(configFile);
-  }
+  getlogin_r(username, bufferLength);
 
   string userInput;
   string token;
