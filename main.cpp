@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
       arraySize++;
     }
     // actual processing
-    if (!strcmp(args[0], "exit")) {
+    if (string(args[0]) == "exit" || string(args[0]) == "quit") {
       terminator(SIGQUIT);
     } else {
       dispatcher(arraySize + 1, args, cwd);
