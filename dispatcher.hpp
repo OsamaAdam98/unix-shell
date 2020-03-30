@@ -24,21 +24,19 @@ void dispatcher(int argc, char* argv[], char* cwd = (char*)"") {
       perror("Fork failed!\n");
       exit(1);
     } else if (processID == 0) {
-      if (!strcmp(args[argc - 2], "&")) {
+      if (string(args[argc - 2]) == "&" || string(args[0]) == "cd") {
         exit(0);
       } else {
-        if (!strcmp(args[0], "cd")) {
-          exit(0);
-        } else if (!strcmp(args[0], "log")) {
+        if (string(args[0]) == "log") {
           const char* log[] = {"vi", "shell.log", NULL};
           execvp(log[0], (char**)log);
         } else
           execvp(args[0], args);
       }
     } else {
-      if (!strcmp(args[0], "cd")) {
+      if (string(args[0]) == "cd") {
         cd(argc, args, cwd);
-      } else if (!strcmp(args[argc - 2], "&")) {
+      } else if (string(args[argc - 2]) == "&") {
         args[argc - 2] = NULL;
         dispatcher(argc - 1, args);
         signal(SIGCHLD, terminator);
