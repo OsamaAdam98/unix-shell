@@ -13,7 +13,10 @@ void cd(int argc, char *args[], char *cwd) {
   if (argc == 2) {
     chdir(getenv("HOME"));
   } else {
-    chdir(args[1]);
+    if (string(args[1]) == "~")
+      chdir(getenv("HOME"));
+    else
+      chdir(args[1]);
   }
   getcwd(cwd, bufferLength);
 }
