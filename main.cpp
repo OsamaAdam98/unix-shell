@@ -17,8 +17,10 @@ int main(int argc, char *argv[]) {
   }
 
   char username[bufferLength];
+  char hostname[bufferLength];
   char cwd[bufferLength];
   getlogin_r(username, bufferLength);
+  gethostname(hostname, bufferLength);
   getcwd(cwd, bufferLength);
 
   string userInput;
@@ -38,7 +40,7 @@ int main(int argc, char *argv[]) {
     }
     // prompting
     do {
-      userInput = prompt(username, cwd);
+      userInput = prompt(username, hostname, cwd);
     } while (userInput.empty() || isspace(userInput.at(0)));
     if (userInput == "logout") {
       cout << endl << "logging out.." << endl;
