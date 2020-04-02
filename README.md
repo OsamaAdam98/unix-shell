@@ -6,7 +6,7 @@ A Unix shell made as an assignment for ECE2021.
 
 ```sh
 -$ make
--$ ./main
+-$ ./shell
 ```
 
 That's it.
