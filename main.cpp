@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   char username[bufferLength];
   char hostname[bufferLength];
   char cwd[bufferLength];
-  getlogin_r(username, bufferLength);
+  cuserid(username);
   gethostname(hostname, bufferLength);
   getcwd(cwd, bufferLength);
 
