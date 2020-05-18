@@ -3,6 +3,7 @@
 #include <sys/wait.h>
 #include <time.h>
 #include <unistd.h>
+
 #include <iostream>
 
 using namespace std;
@@ -18,8 +19,8 @@ void terminator(pid sigPid) {
     case SIGCHLD:
       logFile = fopen("./shell.log", "a+");
       while ((processPid = waitpid(-1, &status, WNOHANG)) > 0) {
-        fprintf(logFile, "%s\tProcess %d exited with status %d\n",
-                asctime(localtime(&localTime)), processPid, status);
+        fprintf(logFile, "%s\tProcess %d exited with status %d\n", asctime(localtime(&localTime)),
+          processPid, status);
       }
       fclose(logFile);
       break;

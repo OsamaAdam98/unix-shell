@@ -1,6 +1,5 @@
 *
-!*.cpp
-!*.hpp
+!/**/
+!*.*
 !Makefile
-!.gitignore
-!*.md
+.vscode/

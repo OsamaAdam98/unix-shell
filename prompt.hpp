@@ -13,7 +13,8 @@ string prompt(char *username, char *hostname, char *cwd) {
 
   cout << username << "@" << hostname << " " << cwdString << " => ";
   getline(cin, userInput);
-  if (cin.eof()) return "logout";
+  if (cin.eof())
+    return "logout";
   return userInput;
 }
 #endif
