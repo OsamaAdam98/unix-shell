@@ -7,7 +7,7 @@ flags = -Wall -Werror -std=c++11
 all: clean $(targets)
 
 $(targets):
-	$(cppComp) $(flags) $@.cpp -o shell
+	$(cppComp) $(flags) $@.cpp -o $(targets)
 
 clean:
 	rm -f $(targets)
